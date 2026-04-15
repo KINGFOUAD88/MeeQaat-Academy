@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meeqaat | Coming Soon</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .icon {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: #fff;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      margin-bottom: 26px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(54px, 7vw, 100px);
+      line-height: 1.02;
+      font-weight: 300;
+      letter-spacing: -2px;
+      margin-bottom: 38px;
+    }
+
+    .next-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-width: 190px;
+      height: 62px;
+      border-radius: 18px;
+      background: #2f74d8;
+      color: #fff;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 400;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      box-shadow: 0 10px 30px rgba(47, 116, 216, 0.28);
+    }
+
+    .next-btn:hover {
+      transform: translateY(-2px);
+      background: #3b82f6;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 28px;
+      left: 34px;
+      color: rgba(255,255,255,0.75);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      box-shadow: 0 0 16px rgba(0, 114, 255, 0.55);
+    }
+
+    .search-box {
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      width: 210px;
+      height: 46px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 768px) {
+      .footer,
+      .search-box {
+        display: none;
+      }
+
+      .next-btn {
+        min-width: 170px;
+        height: 56px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="icon">✓</div>
+    <h1>Coming soon!</h1>
+
+    <a class="next-btn" href="platform.html">
+      <span>Next</span>
+      <span>→</span>
+    </a>
+
+    <div class="footer">
+      <span class="footer-dot"></span>
+      <span>Here’s what’s coming to Meeqaat</span>
+    </div>
+
+    <div class="search-box">Meeqaat experience</div>
+  </main>
+</body>
+</html>
