@@ -2,75 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meeqaat | Platform</title>
-
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg-1: #040404;
+      --bg-2: #0a0a0a;
+      --text: #f5f5f7;
+      --muted: rgba(245,245,247,0.68);
+      --muted-2: rgba(245,245,247,0.82);
+      --card: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --shadow: 0 20px 70px rgba(0,0,0,0.38);
+      --radius: 30px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 30%),
-        linear-gradient(180deg, #050505 0%, #0b0b0b 100%);
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 28%),
+        radial-gradient(circle at bottom, rgba(47,116,216,0.05), transparent 22%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color: var(--text);
+      font-family: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont,
+        "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
     }
 
     .wrap {
-      max-width: 1320px;
+      max-width: 1360px;
       margin: 0 auto;
-      padding: 50px 24px 70px;
+      padding: 58px 24px 80px;
     }
 
     .top {
       text-align: center;
-      margin-bottom: 46px;
+      margin-bottom: 52px;
     }
 
     .eyebrow {
-      color: rgba(255,255,255,0.6);
-      font-size: 14px;
-      letter-spacing: 2px;
+      color: rgba(245,245,247,0.55);
+      font-size: 13px;
+      letter-spacing: 2.2px;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(36px, 5vw, 68px);
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 0.98;
       font-weight: 500;
-      letter-spacing: -1.6px;
+      letter-spacing: -2px;
     }
 
     .sub {
-      max-width: 850px;
-      margin: 16px auto 0;
-      color: rgba(255,255,255,0.68);
+      max-width: 900px;
+      margin: 18px auto 0;
+      color: var(--muted);
       font-size: 18px;
-      line-height: 1.8;
+      line-height: 1.85;
+      text-wrap: balance;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
-      margin-top: 54px;
+      margin-top: 56px;
     }
 
     .flip-card {
       background: transparent;
-      height: 500px;
-      perspective: 1200px;
+      height: 560px;
+      perspective: 1600px;
     }
 
     .flip-inner {
       position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.85s cubic-bezier(.2,.8,.2,1);
+      transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
       transform-style: preserve-3d;
     }
 
@@ -81,40 +103,43 @@
 
     .side {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 28px;
+      inset: 0;
+      border-radius: var(--radius);
       overflow: hidden;
       backface-visibility: hidden;
-      box-shadow: 0 16px 60px rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--card-border);
     }
 
     .front {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 26px;
+      padding: 30px;
       background-size: cover;
       background-position: center;
+      position: relative;
     }
 
     .front::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.16) 55%);
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.84), rgba(0,0,0,0.18) 56%),
+        linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.12));
     }
 
     .front-content {
       position: relative;
       z-index: 1;
+      max-width: 92%;
     }
 
     .front small {
       display: block;
       color: rgba(255,255,255,0.72);
-      letter-spacing: 1.5px;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
       margin-bottom: 10px;
       font-size: 12px;
@@ -122,71 +147,61 @@
 
     .front h2 {
       margin: 0;
-      font-size: 34px;
+      font-size: 38px;
       font-weight: 600;
-      letter-spacing: -1px;
+      letter-spacing: -1.2px;
+      line-height: 1.02;
     }
 
     .front p {
-      margin: 12px 0 0;
-      color: rgba(255,255,255,0.78);
-      line-height: 1.65;
+      margin: 14px 0 0;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
       font-size: 15px;
-      max-width: 90%;
     }
 
     .back {
       transform: rotateY(180deg);
-      background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
-      padding: 30px 28px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.04), transparent 26%),
+        linear-gradient(180deg, rgba(18,18,18,0.98) 0%, rgba(8,8,8,0.98) 100%);
+      padding: 32px 30px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
     }
 
-    .back .tag {
+    .tag {
       display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
       background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.8);
       font-size: 12px;
       letter-spacing: 1.3px;
       text-transform: uppercase;
       width: fit-content;
+      margin-bottom: 18px;
     }
 
     .back h3 {
-      margin: 18px 0 12px;
-      font-size: 32px;
+      margin: 0 0 14px;
+      font-size: 34px;
+      line-height: 1.05;
       font-weight: 600;
       letter-spacing: -1px;
     }
 
     .back p {
-      color: rgba(255,255,255,0.78);
-      line-height: 1.82;
-      font-size: 15px;
-      margin: 0 0 16px;
-    }
-
-    .points {
-      display: grid;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .point {
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.88);
-      font-size: 14px;
-      line-height: 1.5;
+      margin: 0;
+      color: var(--muted-2);
+      line-height: 1.92;
+      font-size: 16px;
+      text-wrap: pretty;
     }
 
     .bottom-link {
-      margin-top: 40px;
+      margin-top: 42px;
       text-align: center;
     }
 
@@ -196,72 +211,100 @@
       gap: 10px;
       text-decoration: none;
       color: #fff;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.07);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 14px 22px;
+      padding: 14px 24px;
       border-radius: 999px;
-      transition: 0.2s ease;
+      transition: 0.22s ease;
+      backdrop-filter: blur(10px);
     }
 
     .bottom-link a:hover {
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.11);
       transform: translateY(-1px);
     }
 
     .students {
       background-image:
-        linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12)),
-        url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80');
+        linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.08)),
+        url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=80');
     }
 
     .teachers {
       background-image:
-        linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12)),
-        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
+        linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.08)),
+        url('https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1400&q=80');
     }
 
     .admins {
       background-image:
-        linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12)),
-        url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80');
+        linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.08)),
+        url('https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&w=1400&q=80');
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1120px) {
       .cards {
         grid-template-columns: 1fr;
       }
 
       .flip-card {
+        height: 500px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap {
+        padding: 40px 16px 56px;
+      }
+
+      h1 {
+        font-size: 36px;
+        letter-spacing: -1.2px;
+      }
+
+      .sub {
+        font-size: 16px;
+      }
+
+      .flip-card {
         height: 460px;
+      }
+
+      .front,
+      .back {
+        padding: 24px;
+      }
+
+      .front h2,
+      .back h3 {
+        font-size: 30px;
+      }
+
+      .back p {
+        font-size: 15px;
+        line-height: 1.82;
       }
     }
   </style>
 </head>
-
 <body>
-
   <main class="wrap">
-
     <section class="top">
       <div class="eyebrow">Meeqaat Platform</div>
       <h1>A refined experience for every role.</h1>
       <p class="sub">
-        Discover how Meeqaat connects students, families, teachers, and administrators
-        in one elegant platform designed for Arabic, Quran, and Islamic studies.
+        Discover how Meeqaat connects students, families, teachers, and administrators in one elegant platform designed for Arabic, Quran, and Islamic studies with clarity, structure, and professionalism.
       </p>
     </section>
 
     <section class="cards">
-
-      <!-- Students -->
       <article class="flip-card">
         <div class="flip-inner">
-
           <div class="side front students">
             <div class="front-content">
               <small>For learners & families</small>
               <h2>Students</h2>
-              <p>Arabic, Quran, and Islamic studies with structured progress and clarity.</p>
+              <p>Arabic, Quran, and Islamic studies with structured progress, guidance, and a clear path to growth.</p>
             </div>
           </div>
 
@@ -270,30 +313,20 @@
               <span class="tag">Student Access</span>
               <h3>Built for growth.</h3>
               <p>
-                Meeqaat helps students and parents follow a clear journey in learning Arabic,
-                Quran, and Islamic studies with full structure and understanding.
+                Meeqaat helps students and parents follow a clear and elegant learning journey in Arabic, Quran, and Islamic studies, with lessons, homework, progress, and understanding brought together in one refined experience designed to support meaningful development over time.
               </p>
-
-              <div class="points">
-                <div class="point">Master Arabic with a structured system.</div>
-                <div class="point">Learn Quran with proper guidance.</div>
-                <div class="point">Islamic studies integrated into the journey.</div>
-              </div>
             </div>
           </div>
-
         </div>
       </article>
 
-      <!-- Teachers -->
       <article class="flip-card">
         <div class="flip-inner">
-
           <div class="side front teachers">
             <div class="front-content">
               <small>For educators</small>
               <h2>Teachers</h2>
-              <p>Professional guidance in Arabic, Quran, and Islamic studies.</p>
+              <p>Professional teachers delivering Arabic, Quran, and Islamic studies with confidence, clarity, and care.</p>
             </div>
           </div>
 
@@ -302,30 +335,20 @@
               <span class="tag">Teacher Access</span>
               <h3>Teach with confidence.</h3>
               <p>
-                Teachers deliver structured lessons while guiding students step by step
-                in Arabic, Quran, and Islamic studies.
+                Teachers can guide students through structured learning in Arabic, Quran, and Islamic studies while managing lessons, assignments, follow-up, and reports through a calm and professional environment that supports excellence in teaching and long-term student progress.
               </p>
-
-              <div class="points">
-                <div class="point">Organized teaching system.</div>
-                <div class="point">Student tracking and reports.</div>
-                <div class="point">Professional learning environment.</div>
-              </div>
             </div>
           </div>
-
         </div>
       </article>
 
-      <!-- Admin -->
       <article class="flip-card">
         <div class="flip-inner">
-
           <div class="side front admins">
             <div class="front-content">
               <small>For operations</small>
               <h2>Admins</h2>
-              <p>Full control of the platform and learning system.</p>
+              <p>Full control over the platform, payments, supervision, and the complete learning experience.</p>
             </div>
           </div>
 
@@ -334,28 +357,17 @@
               <span class="tag">Admin Access</span>
               <h3>Control everything smoothly.</h3>
               <p>
-                Admins supervise operations, manage workflows, and ensure quality
-                across all learning activities.
+                Admins and supervisors can oversee operations, monitor performance, manage payments, review workflows, and make sure every part of the platform runs with quality, consistency, and precision so the entire educational experience remains smooth, reliable, and exceptional.
               </p>
-
-              <div class="points">
-                <div class="point">Control payments and operations.</div>
-                <div class="point">Monitor performance.</div>
-                <div class="point">Ensure platform quality.</div>
-              </div>
             </div>
           </div>
-
         </div>
       </article>
-
     </section>
 
     <div class="bottom-link">
       <a href="black.html">← Back to Coming soon</a>
     </div>
-
   </main>
-
 </body>
 </html>
