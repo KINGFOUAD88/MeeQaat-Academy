@@ -2,22 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meeqaat | Coming Soon</title>
-
   <style>
+    :root {
+      --bg: #000000;
+      --text: #f5f5f7;
+      --muted: rgba(245, 245, 247, 0.68);
+      --button: #2f74d8;
+      --button-hover: #3b82f6;
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.08);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html, body {
+      min-height: 100%;
+    }
+
     body {
-      background: #000;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,0.06), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(47,116,216,0.08), transparent 20%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont,
+        "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       overflow: hidden;
     }
 
@@ -29,134 +46,149 @@
       justify-content: center;
       position: relative;
       text-align: center;
-      padding: 20px;
+      padding: 24px;
     }
 
-    /* Circle icon */
     .icon {
-      width: 90px;
-      height: 90px;
+      width: 92px;
+      height: 92px;
       border-radius: 50%;
-      background: #fff;
+      background: #f5f5f7;
       color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 44px;
-      font-weight: bold;
-      margin-bottom: 30px;
+      font-size: 46px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 50px rgba(255,255,255,0.08);
     }
 
-    /* Main title */
     h1 {
-  font-size: clamp(80px, 10vw, 140px);
-  font-weight: 300; /* Thin زي الصورة */
-  letter-spacing: -3px;
-  line-height: 1;
-  margin-bottom: 40px;
-}
+      font-size: clamp(54px, 8vw, 94px);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      font-weight: 500;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
 
-    /* Button */
+    .subtitle {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.8;
+      margin-bottom: 34px;
+    }
+
     .next-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      min-width: 200px;
-      height: 65px;
+      gap: 14px;
+      min-width: 196px;
+      height: 62px;
       border-radius: 18px;
-      background: #2f74d8;
+      background: var(--button);
       color: #fff;
       text-decoration: none;
       font-size: 22px;
-      transition: 0.2s ease;
-      box-shadow: 0 10px 30px rgba(47, 116, 216, 0.3);
+      font-weight: 400;
+      transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 14px 40px rgba(47, 116, 216, 0.28);
     }
 
     .next-btn:hover {
       transform: translateY(-2px);
-      background: #3b82f6;
+      background: var(--button-hover);
+      box-shadow: 0 18px 48px rgba(47, 116, 216, 0.34);
     }
 
-    /* Bottom text */
-    .footer {
+    .bottom-left {
       position: absolute;
-      bottom: 30px;
-      left: 30px;
+      left: 28px;
+      bottom: 28px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,0.7);
-      font-size: 16px;
+      gap: 12px;
+      color: rgba(245,245,247,0.76);
+      font-size: 15px;
+      line-height: 1.5;
+      text-align: left;
+      max-width: 520px;
     }
 
-    .footer-dot {
+    .dot {
       width: 18px;
       height: 18px;
       border-radius: 50%;
       background: linear-gradient(135deg, #00c6ff, #0072ff);
-      box-shadow: 0 0 12px rgba(0,114,255,0.6);
+      box-shadow: 0 0 16px rgba(0,114,255,0.5);
+      flex: 0 0 auto;
     }
 
-    /* Search style (just aesthetic) */
     .search-box {
       position: absolute;
-      right: 30px;
-      bottom: 25px;
-      width: 220px;
-      height: 45px;
+      right: 28px;
+      bottom: 24px;
+      min-width: 220px;
+      height: 46px;
+      padding: 0 20px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: rgba(245,245,247,0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,0.6);
       font-size: 14px;
+      backdrop-filter: blur(10px);
     }
 
-    @media (max-width: 768px) {
-      .footer,
+    @media (max-width: 860px) {
+      .bottom-left,
       .search-box {
         display: none;
       }
 
       h1 {
-        font-size: 50px;
+        font-size: 48px;
+        letter-spacing: -2px;
+      }
+
+      .subtitle {
+        font-size: 16px;
       }
 
       .next-btn {
-        height: 55px;
-        font-size: 18px;
+        min-width: 170px;
+        height: 56px;
+        font-size: 19px;
       }
     }
   </style>
 </head>
-
 <body>
-
   <main class="page">
-
     <div class="icon">✓</div>
 
     <h1>Coming soon!</h1>
+
+    <p class="subtitle">
+      A refined experience is on the way for learning Arabic, Quran, and Islamic studies with clarity, structure, and excellence.
+    </p>
 
     <a class="next-btn" href="platform.html">
       <span>Next</span>
       <span>→</span>
     </a>
 
-    <div class="footer">
-      <span class="footer-dot"></span>
-      <span>
-        Meeqaat — master Arabic, Quran & Islamic studies with clarity
-      </span>
+    <div class="bottom-left">
+      <span class="dot"></span>
+      <span>Meeqaat — master Arabic, Quran, and Islamic studies with clarity.</span>
     </div>
 
-    <div class="search-box">
-      Meeqaat experience
-    </div>
-
+    <div class="search-box">Meeqaat experience</div>
   </main>
-
 </body>
 </html>
