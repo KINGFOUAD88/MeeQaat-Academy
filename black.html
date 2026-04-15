@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meeqaat | Coming Soon</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -14,8 +15,8 @@
     body {
       background: #000;
       color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       min-height: 100vh;
       overflow: hidden;
     }
@@ -31,9 +32,10 @@
       padding: 20px;
     }
 
+    /* Circle icon */
     .icon {
-      width: 86px;
-      height: 86px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       background: #fff;
       color: #000;
@@ -41,33 +43,33 @@
       align-items: center;
       justify-content: center;
       font-size: 44px;
-      margin-bottom: 26px;
-      font-weight: 600;
+      font-weight: bold;
+      margin-bottom: 30px;
     }
 
+    /* Main title */
     h1 {
-      font-size: clamp(54px, 7vw, 100px);
-      line-height: 1.02;
-      font-weight: 300;
+      font-size: clamp(60px, 8vw, 110px);
+      font-weight: 700; /* Bold */
       letter-spacing: -2px;
-      margin-bottom: 38px;
+      margin-bottom: 40px;
     }
 
+    /* Button */
     .next-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      min-width: 190px;
-      height: 62px;
+      gap: 12px;
+      min-width: 200px;
+      height: 65px;
       border-radius: 18px;
       background: #2f74d8;
       color: #fff;
       text-decoration: none;
       font-size: 22px;
-      font-weight: 400;
-      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
-      box-shadow: 0 10px 30px rgba(47, 116, 216, 0.28);
+      transition: 0.2s ease;
+      box-shadow: 0 10px 30px rgba(47, 116, 216, 0.3);
     }
 
     .next-btn:hover {
@@ -75,15 +77,16 @@
       background: #3b82f6;
     }
 
+    /* Bottom text */
     .footer {
       position: absolute;
-      bottom: 28px;
-      left: 34px;
-      color: rgba(255,255,255,0.75);
-      font-size: 16px;
+      bottom: 30px;
+      left: 30px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      color: rgba(255,255,255,0.7);
+      font-size: 16px;
     }
 
     .footer-dot {
@@ -91,24 +94,23 @@
       height: 18px;
       border-radius: 50%;
       background: linear-gradient(135deg, #00c6ff, #0072ff);
-      box-shadow: 0 0 16px rgba(0, 114, 255, 0.55);
+      box-shadow: 0 0 12px rgba(0,114,255,0.6);
     }
 
+    /* Search style (just aesthetic) */
     .search-box {
       position: absolute;
-      right: 28px;
-      bottom: 24px;
-      width: 210px;
-      height: 46px;
+      right: 30px;
+      bottom: 25px;
+      width: 220px;
+      height: 45px;
       border-radius: 999px;
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.65);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
     }
 
     @media (max-width: 768px) {
@@ -117,17 +119,24 @@
         display: none;
       }
 
+      h1 {
+        font-size: 50px;
+      }
+
       .next-btn {
-        min-width: 170px;
-        height: 56px;
-        font-size: 20px;
+        height: 55px;
+        font-size: 18px;
       }
     }
   </style>
 </head>
+
 <body>
+
   <main class="page">
+
     <div class="icon">✓</div>
+
     <h1>Coming soon!</h1>
 
     <a class="next-btn" href="platform.html">
@@ -137,10 +146,16 @@
 
     <div class="footer">
       <span class="footer-dot"></span>
-      <span>Here’s what’s coming to Meeqaat</span>
+      <span>
+        Meeqaat — master Arabic, Quran & Islamic studies with clarity
+      </span>
     </div>
 
-    <div class="search-box">Meeqaat experience</div>
+    <div class="search-box">
+      Meeqaat experience
+    </div>
+
   </main>
+
 </body>
 </html>
