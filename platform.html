@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meeqaat | Platform Roles</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 30%),
+        linear-gradient(180deg, #050505 0%, #0b0b0b 100%);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 50px 24px 70px;
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 46px;
+    }
+
+    .eyebrow {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 68px);
+      font-weight: 500;
+      letter-spacing: -1.6px;
+    }
+
+    .sub {
+      max-width: 850px;
+      margin: 16px auto 0;
+      color: rgba(255,255,255,0.68);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 54px;
+    }
+
+    .flip-card {
+      background: transparent;
+      height: 500px;
+      perspective: 1200px;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.85s cubic-bezier(.2,.8,.2,1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-inner,
+    .flip-card:focus-within .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .side {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      backface-visibility: hidden;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .front {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 26px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .front::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.16) 55%);
+    }
+
+    .front-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .front small {
+      display: block;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .front h2 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+
+    .front p {
+      margin: 12px 0 0;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.65;
+      font-size: 15px;
+      max-width: 90%;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+      background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .back .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.78);
+      font-size: 12px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .back h3 {
+      margin: 18px 0 12px;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+
+    .back p {
+      color: rgba(255,255,255,0.78);
+      line-height: 1.82;
+      font-size: 15px;
+      margin: 0 0 16px;
+    }
+
+    .points {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .point {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .bottom-link {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .bottom-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 22px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .bottom-link a:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .students {
+      background-image:
+        linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12)),
+        url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80');
+    }
+
+    .teachers {
+      background-image:
+        linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12)),
+        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
+    }
+
+    .admins {
+      background-image:
+        linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.12)),
+        url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80');
+    }
+
+    @media (max-width: 1100px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .flip-card {
+        height: 460px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="top">
+      <div class="eyebrow">Meeqaat Platform</div>
+      <h1>A refined experience for every role.</h1>
+      <p class="sub">
+        Discover how Meeqaat connects students, families, teachers, and administrators
+        in one elegant educational platform designed for Arabic, Quran, English,
+        and meaningful learning progress.
+      </p>
+    </section>
+
+    <section class="cards">
+      <article class="flip-card">
+        <div class="flip-inner">
+          <div class="side front students">
+            <div class="front-content">
+              <small>For learners & families</small>
+              <h2>Students</h2>
+              <p>Arabic, Quran, English, homework, progress, and a clearer path forward.</p>
+            </div>
+          </div>
+          <div class="side back">
+            <div>
+              <span class="tag">Student Access</span>
+              <h3>Built for growth.</h3>
+              <p>
+                Meeqaat helps students and parents follow every step of the learning
+                journey in a clear and elegant way. From assignments to reports,
+                everything stays organized and easy to understand.
+              </p>
+              <div class="points">
+                <div class="point">Arabic and Quran learning in one platform.</div>
+                <div class="point">English support and Islamic studies when needed.</div>
+                <div class="point">Homework, feedback, and progress visibility for families.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip-card">
+        <div class="flip-inner">
+          <div class="side front teachers">
+            <div class="front-content">
+              <small>For educators</small>
+              <h2>Teachers</h2>
+              <p>Professional guidance, structured teaching, and meaningful student support.</p>
+            </div>
+          </div>
+          <div class="side back">
+            <div>
+              <span class="tag">Teacher Access</span>
+              <h3>Teach with confidence.</h3>
+              <p>
+                Professional teachers can manage lessons, guide students, assign
+                homework, submit reports, and keep every learner moving with clarity
+                and precision.
+              </p>
+              <div class="points">
+                <div class="point">Organized lesson planning and student tracking.</div>
+                <div class="point">Homework submission, reports, and performance notes.</div>
+                <div class="point">A calm, elegant interface designed for real teaching.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="flip-card">
+        <div class="flip-inner">
+          <div class="side front admins">
+            <div class="front-content">
+              <small>For operations</small>
+              <h2>Admins</h2>
+              <p>Full control over payments, supervision, homework flow, and platform quality.</p>
+            </div>
+          </div>
+          <div class="side back">
+            <div>
+              <span class="tag">Admin Access</span>
+              <h3>Control everything smoothly.</h3>
+              <p>
+                Admins and supervisors can monitor operations, manage payments,
+                review workflows, track platform activity, and make sure every part
+                of the system runs beautifully.
+              </p>
+              <div class="points">
+                <div class="point">Payment supervision and operational visibility.</div>
+                <div class="point">Homework, reporting, and user oversight.</div>
+                <div class="point">A premium control layer for a serious academy.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="bottom-link">
+      <a href="black.html">← Back to Coming soon</a>
+    </div>
+  </main>
+</body>
+</html>
