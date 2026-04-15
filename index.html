@@ -4,623 +4,230 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meeqaat | Coming Soon</title>
-  <meta
-    name="description"
-    content="Meeqaat is a premium platform for learning Arabic and the Quran. Coming soon."
-  />
   <style>
     :root {
-      --bg: #f6f0e4;
-      --card: rgba(255, 255, 255, 0.42);
-      --text: #0f3b34;
-      --muted: #5d6b67;
-      --gold: #c8852d;
-      --gold-soft: #ddb06b;
-      --line: rgba(15, 59, 52, 0.18);
-      --shadow: 0 20px 60px rgba(15, 59, 52, 0.10);
-      --radius: 26px;
+      --bg: #000000;
+      --text: #f5f5f7;
+      --muted: rgba(245, 245, 247, 0.68);
+      --button: #2f74d8;
+      --button-hover: #3b82f6;
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.08);
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html, body {
+      min-height: 100%;
     }
 
     body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at top left, rgba(200,133,45,0.10), transparent 26%),
-        radial-gradient(circle at bottom right, rgba(15,59,52,0.08), transparent 28%),
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,0.06), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(47,116,216,0.08), transparent 20%),
         var(--bg);
       color: var(--text);
+      font-family: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont,
+        "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(1.01);
+      filter: blur(8px);
+      transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    body.page-ready {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+
+    body.page-exit {
+      opacity: 0;
+      transform: scale(0.985);
+      filter: blur(10px);
     }
 
     .page {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 18px 60px;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--text), #14584d);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      box-shadow: var(--shadow);
-      font-size: 22px;
-    }
-
-    .brand-name {
-      font-size: 28px;
-      letter-spacing: 2px;
-      margin: 0;
-      line-height: 1;
-    }
-
-    .brand-tag {
-      margin-top: 5px;
-      font-size: 11px;
-      letter-spacing: 2.4px;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .pill {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 12px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: rgba(255,255,255,0.45);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .info-card,
-    .feature-card,
-    .footer-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.55);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-    }
-
-    .hero-card {
-      padding: 42px;
-      position: relative;
-      overflow: hidden;
-      min-height: 560px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      top: -80px;
-      right: -80px;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,133,45,0.18), transparent 62%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-
-    .eyebrow .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      display: inline-block;
-    }
-
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(42px, 6vw, 74px);
-      line-height: 0.96;
-      letter-spacing: -1.6px;
-      max-width: 680px;
-    }
-
-    .hero h1 .accent {
-      color: var(--gold);
-      font-style: italic;
-    }
-
-    .hero p {
-      margin: 22px 0 0;
-      max-width: 620px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 170px;
-      padding: 15px 24px;
-      border-radius: 999px;
-      font-size: 14px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-      cursor: default;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--text), #14584d);
-      color: #fff;
-      box-shadow: 0 16px 34px rgba(15, 59, 52, 0.18);
-    }
-
-    .btn-secondary {
-      border-color: var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,0.38);
-    }
-
-    .stat-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 36px;
-    }
-
-    .stat {
-      min-width: 145px;
-      padding: 16px 18px;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.34);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 24px;
-      margin-bottom: 4px;
-      color: var(--text);
-    }
-
-    .stat span {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .hero-visual {
-      display: grid;
-      gap: 20px;
-    }
-
-    .visual-main {
       position: relative;
-      min-height: 360px;
-      overflow: hidden;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      background:
-        linear-gradient(rgba(15,59,52,0.16), rgba(15,59,52,0.06)),
-        url("https://images.unsplash.com/photo-1542816417-0983670d4dc3?auto=format&fit=crop&w=1200&q=80")
-        center/cover no-repeat;
-    }
-
-    .floating-badge {
-      position: absolute;
-      left: 22px;
-      bottom: 22px;
-      background: rgba(255,255,255,0.82);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.75);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 14px 16px;
-      max-width: 260px;
-      box-shadow: var(--shadow);
-    }
-
-    .floating-badge .small {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 7px;
-    }
-
-    .floating-badge strong {
-      display: block;
-      font-size: 18px;
-      line-height: 1.35;
-      margin-bottom: 5px;
-    }
-
-    .floating-badge span {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .info-card {
-      padding: 22px;
-      min-height: 176px;
-    }
-
-    .info-label {
-      font-size: 11px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-
-    .info-card h3 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      line-height: 1.18;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .section {
-      margin-top: 26px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 24px;
-    }
-
-    .feature-card {
+      text-align: center;
       padding: 24px;
     }
 
-    .feature-no {
-      font-size: 12px;
-      color: var(--gold);
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .feature-card h4 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      line-height: 1.2;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .coming {
-      margin-top: 26px;
-      padding: 28px;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, rgba(15,59,52,0.96), rgba(20,88,77,0.92));
-      color: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .coming .small {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
-      margin-bottom: 12px;
-    }
-
-    .coming h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.8px;
-    }
-
-    .coming p {
-      margin: 14px 0 0;
-      max-width: 720px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.84);
-      font-size: 16px;
-    }
-
-    .footer-card {
-      margin-top: 26px;
-      padding: 22px 24px;
+    .icon {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: #f5f5f7;
+      color: #000;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      justify-content: center;
+      font-size: 46px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 50px rgba(255,255,255,0.08);
     }
 
-    .footer-note {
+    h1 {
+      font-size: clamp(54px, 8vw, 94px);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      font-weight: 500;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      max-width: 760px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.65;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.8;
+      margin-bottom: 34px;
     }
 
-    .mini-links {
+    .next-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-width: 196px;
+      height: 62px;
+      border-radius: 18px;
+      background: var(--button);
+      color: #fff;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 400;
+      transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 14px 40px rgba(47, 116, 216, 0.28);
+    }
+
+    .next-btn:hover {
+      transform: translateY(-2px);
+      background: var(--button-hover);
+      box-shadow: 0 18px 48px rgba(47, 116, 216, 0.34);
+    }
+
+    .bottom-left {
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      color: rgba(245,245,247,0.76);
+      font-size: 15px;
+      line-height: 1.5;
+      text-align: left;
+      max-width: 520px;
     }
 
-    .mini-links span {
-      border: 1px solid var(--line);
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      box-shadow: 0 0 16px rgba(0,114,255,0.5);
+      flex: 0 0 auto;
+    }
+
+    .search-box {
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      min-width: 220px;
+      height: 46px;
+      padding: 0 20px;
       border-radius: 999px;
-      padding: 9px 13px;
-      font-size: 12px;
-      color: var(--text);
-      background: rgba(255,255,255,0.40);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: rgba(245,245,247,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
     }
 
-    @media (max-width: 980px) {
-      .hero {
-        grid-template-columns: 1fr;
+    @media (max-width: 860px) {
+      .bottom-left,
+      .search-box {
+        display: none;
       }
 
-      .features {
-        grid-template-columns: 1fr;
+      h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
       }
 
-      .hero-card {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .page {
-        padding: 18px 14px 40px;
-      }
-
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-card {
-        padding: 28px 22px;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .brand-name {
-        font-size: 24px;
-      }
-
-      .hero p {
+      .subtitle {
         font-size: 16px;
       }
 
-      .stat-row {
-        flex-direction: column;
-      }
-
-      .stat {
-        width: 100%;
+      .next-btn {
+        min-width: 170px;
+        height: 56px;
+        font-size: 19px;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <header class="topbar">
-      <div class="brand-wrap">
-        <div class="brand-mark">م</div>
-        <div>
-          <h1 class="brand-name">MEEQAAT</h1>
-          <div class="brand-tag">The language of revelation</div>
-        </div>
-      </div>
-      <div class="pill">Launching Soon</div>
-    </header>
+    <div class="icon">✓</div>
 
-    <section class="hero">
-      <div class="hero-card">
-        <div class="eyebrow">
-          <span class="dot"></span>
-          Arabic • Quran • Guidance
-        </div>
+    <h1>Coming soon!</h1>
 
-        <h1>
-          Master <span class="accent">Arabic</span><br />
-          and the Quran<br />
-          with clarity.
-        </h1>
+    <p class="subtitle">
+      A refined experience is on the way for learning Arabic, Quran, and Islamic studies with clarity, structure, and excellence.
+    </p>
 
-        <p>
-          Meeqaat is a premium learning platform designed to connect students,
-          teachers, parents, and supervisors in one refined educational
-          experience. Structured progress, reports, homework, payments, and
-          meaningful growth — all in one place.
-        </p>
+    <a class="next-btn" href="/platform/" data-transition>
+      <span>Next</span>
+      <span>→</span>
+    </a>
 
-        <div class="hero-actions">
-          <div class="btn btn-primary">Coming Soon</div>
-          <div class="btn btn-secondary">Meeqaat.com</div>
-        </div>
+    <div class="bottom-left">
+      <span class="dot"></span>
+      <span>Meeqaat — master Arabic, Quran, and Islamic studies with clarity.</span>
+    </div>
 
-        <div class="stat-row">
-          <div class="stat">
-            <strong>Students</strong>
-            <span>Track lessons, homework, and personal progress.</span>
-          </div>
-          <div class="stat">
-            <strong>Parents</strong>
-            <span>See reports, follow performance, and stay informed.</span>
-          </div>
-          <div class="stat">
-            <strong>Teachers</strong>
-            <span>Manage learning paths, notes, and student growth.</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="visual-main">
-          <div class="floating-badge">
-            <span class="small">Meeqaat Vision</span>
-            <strong>Your time to learn Arabic begins here.</strong>
-            <span>
-              Elegant learning tools built for serious progress and meaningful
-              connection.
-            </span>
-          </div>
-        </div>
-
-        <div class="info-grid">
-          <div class="info-card">
-            <div class="info-label">01 • Purpose</div>
-            <h3>One platform. Every role connected.</h3>
-            <p>
-              Built for admins, supervisors, teachers, students, and parents to
-              work together with clarity and confidence.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <div class="info-label">02 • Experience</div>
-            <h3>Elegant, structured, and practical.</h3>
-            <p>
-              From attendance and scheduling to reports and payments, every
-              feature is designed for real educational impact.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="features">
-        <article class="feature-card">
-          <div class="feature-no">Feature One</div>
-          <h4>Progress with depth</h4>
-          <p>
-            Students and parents can follow homework, progress, and academic
-            development in a clear and elegant dashboard.
-          </p>
-        </article>
-
-        <article class="feature-card">
-          <div class="feature-no">Feature Two</div>
-          <h4>Teaching with insight</h4>
-          <p>
-            Teachers can organize lessons, submit reports, manage tasks, and
-            support each learner with greater precision.
-          </p>
-        </article>
-
-        <article class="feature-card">
-          <div class="feature-no">Feature Three</div>
-          <h4>Administration with control</h4>
-          <p>
-            Supervisors and admins can oversee attendance, operations, user
-            activity, and the full educational workflow from one place.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="coming">
-      <span class="small">Official notice</span>
-      <h2>We are preparing something exceptional.</h2>
-      <p>
-        Meeqaat is currently in development. A refined platform experience is
-        coming soon for Arabic learning, Quran study, progress tracking, and
-        connected educational management.
-      </p>
-    </section>
-
-    <footer class="footer-card">
-      <div class="footer-note">
-        © 2026 Meeqaat. A premium Arabic learning platform currently under
-        development.
-      </div>
-      <div class="mini-links">
-        <span>Arabic</span>
-        <span>Quran</span>
-        <span>Progress</span>
-        <span>Coming Soon</span>
-      </div>
-    </footer>
+    <div class="search-box">Meeqaat experience</div>
   </main>
+
+  <script>
+    window.addEventListener("load", () => {
+      requestAnimationFrame(() => {
+        document.body.classList.add("page-ready");
+      });
+    });
+
+    document.querySelectorAll('a[data-transition]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (!href || href.startsWith("#")) return;
+
+        e.preventDefault();
+        document.body.classList.remove("page-ready");
+        document.body.classList.add("page-exit");
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 550);
+      });
+    });
+  </script>
 </body>
 </html>
